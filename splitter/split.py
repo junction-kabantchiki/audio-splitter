@@ -57,10 +57,13 @@ def get_latest_upload(folder='.'):
   files.sort(key=lambda x: os.path.getmtime(x))
   return files[-1]
 
-def download_split(video_id):
+def get_file(video_id, folder='.'):
+  return os.path.join(folder, f'{video_id}.wav')
+
+def download_split(video_id, window_size=5000):
   download_wav(video_id)
-  file = get_latest_upload()
-  splitted_files = split_wav_store(file, splits_dir=video_id)
+  file = get_file(video_id)
+  splitted_files = split_wav_store(file, splits_dir=video_id, window_size=window_size)
   return splitted_files
 
 def infer(files):
