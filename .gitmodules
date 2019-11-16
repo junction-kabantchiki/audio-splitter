@@ -1,0 +1,3 @@
+[submodule "model"]
+	path = model
+	url = https://github.com/x4nth055/emotion-recognition-using-speech

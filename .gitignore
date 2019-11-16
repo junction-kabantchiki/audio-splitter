@@ -1,11 +1,9 @@
 .idea/
 venv/
-.DS_Store/
+.venv/
 .DS_Store
 *.wav
 __pycache__/
-splitter/__pycache__/
-model
 *.csv
 features/
 logs/
