@@ -13,10 +13,16 @@ def prepare_model():
                                     n_rnn_layers=2,
                                     n_dense_layers=2,
                                     rnn_units=128,
-                                    dense_units=128)
-    deeprec.train()
-    print(deeprec.model_name)
-  return deeprec
+                                    dense_units=128,
+                                    )
+    with graph.as_default():
+        model_name = "model/results/" + deeprec.model_name
+        deeprec.create_model()
+        deeprec.model.load_weights(model_name)
+        deeprec.model_trained = True
+
+        print(deeprec.model_name)
+    return deeprec
 
 
 deeprec = prepare_model()
