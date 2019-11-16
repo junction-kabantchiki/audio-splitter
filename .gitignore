@@ -6,3 +6,7 @@ venv/
 __pycache__/
 splitter/__pycache__/
 model
+*.csv
+features/
+logs/
+results/

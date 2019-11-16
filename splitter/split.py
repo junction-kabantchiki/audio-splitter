@@ -10,7 +10,6 @@ ydl_opts = {
       'preferredcodec': 'wav',
       'preferredquality': '192',
     }],
-    # 'outtmpl': 'target.wav',
     'outtmpl': '%(title)s.%(ext)s'
 }
 
@@ -49,6 +48,10 @@ def split_wav_store(fname, window_size=5000, format='wav', splits_dir='splits'):
 
 
 def download_wav(video_id):
+  if os.path.isfile(f'{video_id}.wav'): # already downloaded
+    return
+
+  ydl_opts['outtmpl'] = f'{video_id}.%(ext)s'
   with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     ydl.download([f'https://www.youtube.com/watch?v={video_id}'])
 
@@ -58,7 +61,7 @@ def get_latest_upload(folder='.'):
   return files[-1]
 
 def get_file(video_id, folder='.'):
-  return os.path.join(folder, f'{video_id}.wav')
+  return f'{video_id}.wav'
 
 def download_split(video_id, window_size=5000):
   download_wav(video_id)
