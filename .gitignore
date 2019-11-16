@@ -3,3 +3,5 @@ venv/
 .DS_Store/
 .DS_Store
 *.wav
+__pycache__/
+splitter/__pycache__/

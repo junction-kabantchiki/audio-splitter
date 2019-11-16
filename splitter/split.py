@@ -48,19 +48,19 @@ def split_wav_store(fname, window_size=5000, format='wav', splits_dir='splits'):
   return split_audio(fname, window_size, format, splits_dir)
 
 
-def download_wav(youtube_link):
+def download_wav(video_id):
   with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-    ydl.download([youtube_link])
+    ydl.download([f'https://www.youtube.com/watch?v={video_id}'])
 
 def get_latest_upload(folder='.'):
   files = glob.glob(os.path.join(folder, '*.wav'))
   files.sort(key=lambda x: os.path.getmtime(x))
   return files[-1]
 
-def download_split(link):
-  download_wav(link)
+def download_split(video_id):
+  download_wav(video_id)
   file = get_latest_upload()
-  splitted_files = split_wav_store(file)
+  splitted_files = split_wav_store(file, splits_dir=video_id)
   return splitted_files
 
 def infer(files):
