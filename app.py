@@ -1,9 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS
 import splitter.split as split
 import tensorflow as tf
 from model.deep_emotion_recognition import DeepEmotionRecognizer
 
 app = Flask(__name__)
+cors = CORS(app)
 graph = tf.Graph()
 
 def prepare_model():
